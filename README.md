@@ -1,56 +1,26 @@
 # Peer Review Registry (Aptos Move)
 
-This Move module implements a minimal **anonymous peer review system** on the Aptos blockchain.  
-It allows:
-- Reviewers to create a reputation profile.
-- Reviewers to submit anonymous review attestations for papers.
-- A registry owner to manage the collection of all reviews.
+## Description
+The Peer Review Registry is a minimal **anonymous peer review system** implemented as a Move smart contract on the Aptos blockchain. It allows reviewers to create a reputation profile, submit anonymous reviews for academic papers, and store all review attestations in a decentralized registry managed by a designated owner.
 
----
+By combining blockchain immutability with pseudonymity, this module ensures that reviews are tamper-proof, transparent, and resistant to censorship.
 
-## Module Overview
+## Vision
+The long-term vision of the Peer Review Registry is to create a **decentralized, reputation-based peer review ecosystem** for research and academic publishing. Instead of relying on centralized journals or publishers, this system empowers researchers worldwide to submit, evaluate, and validate scholarly work in an open and anonymous manner.
 
-### Structs
+Key guiding principles:
+- **Transparency** – All reviews are stored on-chain for verifiable authenticity.
+- **Anonymity** – Reviewers remain pseudonymous, protecting against bias and retaliation.
+- **Reputation-driven trust** – Reviewers build credibility through consistent, quality contributions.
 
-- **`ReviewerProfile`**
-  - Tracks a reviewer's activity and reputation.
-  - Fields:
-    - `total_reviews: u64` – Number of reviews submitted.
-    - `reputation_score: u64` – Reputation score (starts at 100).
-
-- **`ReviewAttestation`**
-  - Represents a single review entry.
-  - Fields:
-    - `paper_id: u64` – Identifier of the paper being reviewed.
-    - `reviewer_address: address` – Pseudonymous reviewer account.
-    - `score: u8` – Numeric score (1–10).
-    - `is_anonymous: bool` – Always set to `true` in this example.
-
-- **`ReviewRegistry`**
-  - A global container of all submitted reviews.
-  - Fields:
-    - `attestations: vector<ReviewAttestation>` – All stored reviews.
-    - `next_paper_id: u64` – Placeholder for future paper submissions.
-
----
-
-## Functions
-
-- **`create_reviewer_profile(reviewer: &signer)`**
-  - Initializes a profile for a reviewer.
-  - Must be called once before submitting reviews.
-  - Sets `total_reviews = 0` and `reputation_score = 100`.
-
-- **`submit_review(reviewer: &signer, registry_owner: address, paper_id: u64, score: u8)`**
-  - Allows a reviewer to submit a review for a given paper.
-  - Updates reviewer’s profile (`total_reviews` and `reputation_score`).
-  - Creates a `ReviewAttestation` and stores it in the global `ReviewRegistry`.
-
-- **`initialize_registry(owner: &signer)`**
-  - Must be called by the registry owner to create the `ReviewRegistry`.
-  - Prepares an empty vector for storing attestations.
-
----
+## Future Scope
+The current module provides a minimal foundation. Future improvements can include:
+- Paper submission functionality (with metadata storage on-chain or via IPFS/Arweave)
+- Weighted reputation scoring, factoring in peer endorsements
+- Incentive mechanisms (token rewards, staking, or penalties for bad actors)
+- Advanced privacy features (zero-knowledge proofs to enhance anonymity)
+- Integration with decentralized identity (DID) standards
+- DAO-based governance for community-driven moderation
 
 ## Usage
 
@@ -72,6 +42,10 @@ aptos move run \
 ```bash
 aptos move run \
   --function-id <ADDR>::PeerReviewRegistry::submit_review \
-  --args signer <registry_owner_addr> <paper_id:u64> <score:u8>```
+  --args signer <registry_owner_addr> <paper_id:u64> <score:u8>
+```
 
-<img width="1888" height="865" alt="image" src="https://github.com/user-attachments/assets/fd0911d8-9caf-47e3-ae4e-3c1abf4dfb6d" />
+### Contract Address
+
+<img width="1885" height="873" alt="image" src="https://github.com/user-attachments/assets/6c91091d-6498-433d-996d-43f355099ad7" />
+
