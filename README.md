@@ -73,3 +73,5 @@ aptos move run \
 aptos move run \
   --function-id <ADDR>::PeerReviewRegistry::submit_review \
   --args signer <registry_owner_addr> <paper_id:u64> <score:u8>```
+
+<img width="1888" height="865" alt="image" src="https://github.com/user-attachments/assets/fd0911d8-9caf-47e3-ae4e-3c1abf4dfb6d" />
