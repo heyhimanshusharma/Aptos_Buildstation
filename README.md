@@ -65,4 +65,11 @@ aptos move run \
 ```bash
 aptos move run \
   --function-id <ADDR>::PeerReviewRegistry::create_reviewer_profile \
-  --args signer```
+  --args signer
+```
+
+### 3. Submit a Review
+```bash
+aptos move run \
+  --function-id <ADDR>::PeerReviewRegistry::submit_review \
+  --args signer <registry_owner_addr> <paper_id:u64> <score:u8>```
