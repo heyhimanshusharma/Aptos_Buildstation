@@ -58,7 +58,8 @@ It allows:
 ```bash
 aptos move run \
   --function-id <ADDR>::PeerReviewRegistry::initialize_registry \
-  --args signer```
+  --args signer
+```
 
 ### 2. Create Reviewer Profile (by each reviewer)
 ```bash
